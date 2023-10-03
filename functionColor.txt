@@ -1,0 +1,52 @@
+Option Explicit
+Sub DeletedCell(row As Integer, column As Integer)
+    Cells(column, row).Interior.Color = vbRed
+End Sub
+Sub KeptCell(row As Integer, column As Integer)
+    Cells(column, row).Interior.Color = vbCyan
+End Sub
+Sub NewCell(row As Integer, column As Integer)
+    Cells(column, row).Interior.Color = vbGreen
+End Sub
+Sub ModifiedCell(row As Integer, column As Integer)
+    Cells(column, row).Interior.Color = vbYellow
+End Sub
+Sub CompareCell(row As Integer, column As Integer)
+    'If conteudo da plan2 = ""
+        'deletedcell(row,column)
+        
+    'if conteudo da plan1 = conteudo da plan2 then else
+        'keptcell(row, column)
+    
+    'if conteudo da plan1 <> conteudo da plan2 then else
+        'newcell
+        
+        'adicionar cor somente no novo e deletado
+        
+End Sub
+
+Sub Exemplo1() 'PrintCellRange
+
+Dim i As Integer
+Dim j As Integer
+
+    'For j = 1 To 8
+     '   For i = 1 To 8
+      '      Call PrintCell(j, i)
+       ' Next i
+    'Next j
+End Sub
+
+Sub Compara()
+ Dim into As Range
+ Dim i As Integer
+ For i = 2 To 5
+  With Sheets("BD_Empresas")
+   Set into = .[A:A].Find(Cells(i, 4), Lookat:=xlWhole)
+    If Not into Is Nothing Then
+     .Cells(into.row, 5).Resize(, 1).Value = Cells(i, 5).Resize(, 1).Value
+    Else: Call DeletedCell(i, 4)
+    End If
+ End With
+ Next i
+End Sub
